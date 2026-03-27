@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica Sorriso de Ouro | Especialistas em Saúde Bucal</title>
+  <meta name="description"
+    content="Clínica Sorriso de Ouro – Implantes, Ortodontia, Clareamento e muito mais. Agende sua consulta pelo WhatsApp e sorria com confiança." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#1d6fa4',
+              teal: '#0d9488',
+              tealLight: '#ccfbf1',
+              blueLight: '#dbeafe',
+              dark: '#1e293b',
+              gray: '#475569',
+              offwhite: '#f8fafc',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* WhatsApp pulse animation */
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    .whatsapp-float {
+      animation: pulse-ring 2.2s ease-in-out infinite;
+    }
+
+    /* Navbar scroll effect */
+    .navbar-scrolled {
+      box-shadow: 0 2px 24px 0 rgba(30, 41, 59, 0.10);
+      background: rgba(255, 255, 255, 0.97);
+    }
+
+    /* FAQ transition */
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-body.open {
+      max-height: 300px;
+    }
+
+    /* Card hover lift */
+    .card-lift {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -8px rgba(13, 148, 136, 0.18);
+    }
+
+    /* Gradient hero overlay */
+    .hero-gradient {
+      background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 60%, #f8fafc 100%);
+    }
+
+    /* Section fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Star rating */
+    .stars {
+      color: #f59e0b;
+    }
+
+    /* Hamburger lines */
+    .bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #1e293b;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    #menu-btn.open .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    #menu-btn.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    #menu-btn.open .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-white text-brand-dark antialiased">
+
+  <!-- ============================================================
+       HEADER / NAVBAR
+  ============================================================ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-18 py-4">
+
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-2 group">
+        <div
+          class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-teal to-brand-blue flex items-center justify-center shadow-md">
+          <i class="fa-solid fa-tooth text-white text-sm"></i>
+        </div>
+        <div class="leading-none">
+          <span class="text-brand-dark font-800 text-lg font-bold tracking-tight">Sorriso</span>
+          <span class="text-brand-teal font-bold text-lg tracking-tight"> de Ouro</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-gray">
+        <a href="#inicio" class="hover:text-brand-teal transition-colors">Início</a>
+        <a href="#servicos" class="hover:text-brand-teal transition-colors">Serviços</a>
+        <a href="#sobre" class="hover:text-brand-teal transition-colors">Sobre</a>
+        <a href="#contato" class="hover:text-brand-teal transition-colors">Contato</a>
+      </nav>
+
+      <!-- CTA Button Desktop -->
+      <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank"
+        class="hidden md:inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
+        <i class="fa-brands fa-whatsapp text-lg"></i> Agendar Agora
+      </a>
+
+      <!-- Hamburger -->
+      <button id="menu-btn"
+        class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-md focus:outline-none"
+        aria-label="Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-100 px-5 py-4 shadow-lg">
+      <nav class="flex flex-col gap-4 text-sm font-medium text-brand-gray mb-4">
+        <a href="#inicio" class="hover:text-brand-teal transition-colors mobile-link">Início</a>
+        <a href="#servicos" class="hover:text-brand-teal transition-colors mobile-link">Serviços</a>
+        <a href="#sobre" class="hover:text-brand-teal transition-colors mobile-link">Sobre</a>
+        <a href="#contato" class="hover:text-brand-teal transition-colors mobile-link">Contato</a>
+      </nav>
+      <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank"
+        class="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-semibold px-5 py-2.5 rounded-full w-full text-center">
+        <i class="fa-brands fa-whatsapp text-lg"></i> Agendar via WhatsApp
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="inicio" class="hero-gradient pt-28 pb-16 md:pt-36 md:pb-24">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
+
+      <!-- Text -->
+      <div class="flex-1 text-center md:text-left fade-in">
+        <span
+          class="inline-block bg-brand-tealLight text-brand-teal text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-5">
+          ✨ Mais de 10 anos cuidando do seu sorriso
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-brand-dark mb-5">
+          Especialistas em <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-blue">transformar o seu
+            sorriso</span>
+        </h1>
+        <p class="text-brand-gray text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+          Na Clínica Sorriso de Ouro você encontra tratamentos modernos, atendimento humanizado e a tecnologia certa
+          para cuidar da sua saúde bucal com conforto e segurança.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20minha%20consulta." target="_blank"
+            class="inline-flex items-center justify-center gap-3 bg-brand-teal hover:bg-teal-700 text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-xl hover:shadow-teal-200 hover:scale-105 transition-all duration-200">
+            <i class="fa-brands fa-whatsapp text-2xl"></i> Agendar Consulta Grátis
+          </a>
+          <a href="#servicos"
+            class="inline-flex items-center justify-center gap-2 border-2 border-brand-teal text-brand-teal font-semibold text-lg px-8 py-4 rounded-2xl hover:bg-brand-tealLight transition-all duration-200">
+            Ver Tratamentos <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+        </div>
+        <div class="mt-8 flex items-center justify-center md:justify-start gap-6 text-sm text-brand-gray">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-brand-teal"></i> Equipe
+            especializada</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> +2.000 pacientes
+            satisfeitos</div>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="flex-1 flex justify-center md:justify-end fade-in">
+        <div class="relative w-full max-w-md">
+          <div class="absolute -top-4 -left-4 w-72 h-72 bg-brand-tealLight rounded-full -z-10 blur-2xl opacity-60">
+          </div>
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffbb172e6e8?w=600&q=80"
+            alt="Paciente sorrindo após tratamento na Clínica Sorriso de Ouro"
+            class="rounded-3xl shadow-2xl object-cover w-full h-80 md:h-[420px]" />
+          <!-- Floating badge -->
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3">
+            <div class="w-10 h-10 bg-brand-tealLight rounded-full flex items-center justify-center">
+              <i class="fa-solid fa-circle-check text-brand-teal text-lg"></i>
+            </div>
+            <div>
+              <div class="text-xs text-brand-gray font-medium">Avaliação Google</div>
+              <div class="flex items-center gap-1">
+                <span class="stars text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                <span class="text-xs font-bold text-brand-dark">5.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SERVICES / TRATAMENTOS
+  ============================================================ -->
+  <section id="servicos" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-14 fade-in">
+        <span
+          class="inline-block bg-brand-blueLight text-brand-blue text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Nossos
+          Tratamentos</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-3">Tudo que você precisa em um só lugar</h2>
+        <p class="text-brand-gray text-base max-w-xl mx-auto">Oferecemos os mais modernos tratamentos odontológicos com
+          equipamentos de última geração e profissionais altamente qualificados.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1 -->
+        <div class="card-lift bg-brand-offwhite rounded-2xl p-7 border border-slate-100 fade-in">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-brand-teal to-teal-400 rounded-xl flex items-center justify-center mb-5 shadow-md">
+            <i class="fa-solid fa-tooth text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold text-brand-dark mb-2">Implantes Dentários</h3>
+          <p class="text-brand-gray text-sm leading-relaxed">Recupere a função e a estética do seu sorriso com implantes
+            de titânio de alta qualidade, com resultado natural e duradouro.</p>
+          <a href="https://wa.me/5511999999999?text=Olá!%20Tenho%20interesse%20em%20implantes%20dentários."
+            target="_blank"
+            class="mt-5 inline-flex items-center text-brand-teal text-sm font-semibold gap-1 hover:gap-2 transition-all">Saiba
+            mais <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-lift bg-brand-offwhite rounded-2xl p-7 border border-slate-100 fade-in">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-brand-blue to-blue-400 rounded-xl flex items-center justify-center mb-5 shadow-md">
+            <i class="fa-solid fa-teeth text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold text-brand-dark mb-2">Ortodontia</h3>
+          <p class="text-brand-gray text-sm leading-relaxed">Alinhamento dental com aparelhos tradicionais ou
+            alinhadores invisíveis (Invisalign), para um sorriso reto e harmonioso.</p>
+          <a href="https://wa.me/5511999999999?text=Olá!%20Tenho%20interesse%20em%20ortodontia." target="_blank"
+            class="mt-5 inline-flex items-center text-brand-blue text-sm font-semibold gap-1 hover:gap-2 transition-all">Saiba
+            mais <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-lift bg-brand-offwhite rounded-2xl p-7 border border-slate-100 fade-in">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-300 rounded-xl flex items-center justify-center mb-5 shadow-md">
+            <i class="fa-solid fa-sun text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold text-brand-dark mb-2">Clareamento Dental</h3>
+          <p class="text-brand-gray text-sm leading-relaxed">Clareamento seguro de consultório ou a laser que deixa seus
+            dentes até 8 tons mais brancos com resultados visíveis na primeira sessão.</p>
+          <a href="https://wa.me/5511999999999?text=Olá!%20Tenho%20interesse%20em%20clareamento%20dental."
+            target="_blank"
+            class="mt-5 inline-flex items-center text-amber-500 text-sm font-semibold gap-1 hover:gap-2 transition-all">Saiba
+            mais <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card-lift bg-brand-offwhite rounded-2xl p-7 border border-slate-100 fade-in">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-400 rounded-xl flex items-center justify-center mb-5 shadow-md">
+            <i class="fa-solid fa-star text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold text-brand-dark mb-2">Lentes de Contato Dental</h3>
+          <p class="text-brand-gray text-sm leading-relaxed">Facetas ultrafinas de porcelana que transformam o formato,
+            cor e harmonia do sorriso sem desgaste excessivo do esmalte.</p>
+          <a href="https://wa.me/5511999999999?text=Olá!%20Tenho%20interesse%20em%20lentes%20de%20contato%20dental."
+            target="_blank"
+            class="mt-5 inline-flex items-center text-purple-500 text-sm font-semibold gap-1 hover:gap-2 transition-all">Saiba
+            mais <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SOBRE NÓS
+  ============================================================ -->
+  <section id="sobre" class="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col md:flex-row items-center gap-12 md:gap-20">
+
+      <!-- Image Left -->
+      <div class="flex-1 relative fade-in">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80"
+          alt="Equipe da Clínica Sorriso de Ouro"
+          class="rounded-3xl shadow-2xl object-cover w-full h-80 md:h-[460px]" />
+        <div
+          class="absolute -bottom-5 -right-5 bg-brand-teal text-white rounded-2xl shadow-xl px-6 py-5 w-44 text-center hidden md:block">
+          <div class="text-4xl font-extrabold">10+</div>
+          <div class="text-sm font-medium mt-1 text-teal-100">anos de experiência</div>
+        </div>
+      </div>
+
+      <!-- Text Right -->
+      <div class="flex-1 fade-in">
+        <span
+          class="inline-block bg-brand-tealLight text-brand-teal text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-5">Sobre
+          Nós</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-5 leading-tight">Por que a <span
+            class="text-brand-teal">Sorriso de Ouro</span> é a escolha certa?</h2>
+        <p class="text-brand-gray text-base leading-relaxed mb-5">
+          Fundada em 2014, a Clínica Sorriso de Ouro nasceu do sonho de oferecer odontologia de excelência acessível a
+          todos. Ao longo de mais de 10 anos, já transformamos sorrisos de mais de 2.000 pacientes com dedicação,
+          tecnologia de ponta e, acima de tudo, muito cuidado humano.
+        </p>
+        <p class="text-brand-gray text-base leading-relaxed mb-8">
+          Nossa equipe é formada por especialistas em diversas áreas da odontologia, todos com formação continuada e
+          comprometidos em oferecer o tratamento mais adequado para cada paciente. Aqui, você não é um número — é alguém
+          que merece cuidado de verdade.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+          <div class="flex flex-col items-start gap-2 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <i class="fa-solid fa-microscope text-brand-teal text-2xl"></i>
+            <div class="font-bold text-brand-dark text-sm">Tecnologia de Ponta</div>
+            <div class="text-xs text-brand-gray">Equipamentos digitais e radiografia 3D</div>
+          </div>
+          <div class="flex flex-col items-start gap-2 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <i class="fa-solid fa-heart-pulse text-brand-teal text-2xl"></i>
+            <div class="font-bold text-brand-dark text-sm">Atendimento Humanizado</div>
+            <div class="text-xs text-brand-gray">Você sempre no centro das nossas decisões</div>
+          </div>
+          <div class="flex flex-col items-start gap-2 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <i class="fa-solid fa-shield-halved text-brand-teal text-2xl"></i>
+            <div class="font-bold text-brand-dark text-sm">Segurança Total</div>
+            <div class="text-xs text-brand-gray">Biossegurança e esterilização rigorosa</div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20mais%20sobre%20a%20clínica."
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 text-white font-bold px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
+          <i class="fa-brands fa-whatsapp text-lg"></i> Fale com nossa equipe
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       DEPOIMENTOS
+  ============================================================ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-14 fade-in">
+        <span
+          class="inline-block bg-amber-50 text-amber-600 text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4">Depoimentos</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-3">O que nossos pacientes dizem</h2>
+        <p class="text-brand-gray text-base max-w-lg mx-auto">Mais de 2.000 sorrisos transformados. Confira o que eles
+          falam sobre a experiência na Sorriso de Ouro.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Testimonial 1 -->
+        <div class="card-lift bg-gradient-to-br from-teal-50 to-white rounded-2xl p-7 border border-teal-100 fade-in">
+          <div class="stars text-base mb-3">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-brand-gray text-sm leading-relaxed mb-5">
+            "Fiz meu implante aqui e foi a melhor decisão da minha vida! O atendimento foi impecável do começo ao fim.
+            Me sinto outra pessoa com esse novo sorriso. Super indico para toda a família!"
+          </p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80" alt="Ana Paula"
+              class="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <div class="font-bold text-brand-dark text-sm">Ana Paula Mendes</div>
+              <div class="text-xs text-brand-gray">Implante Dentário</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="card-lift bg-gradient-to-br from-blue-50 to-white rounded-2xl p-7 border border-blue-100 fade-in">
+          <div class="stars text-base mb-3">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-brand-gray text-sm leading-relaxed mb-5">
+            "Fiz o clareamento e fiquei impressionado com o resultado! Em uma única sessão já deu para ver a diferença.
+            O ambiente é moderno, a equipe é muito atenciosa e profissional. Voltarei com certeza!"
+          </p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80" alt="Carlos Eduardo"
+              class="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <div class="font-bold text-brand-dark text-sm">Carlos Eduardo Lima</div>
+              <div class="text-xs text-brand-gray">Clareamento Dental</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div
+          class="card-lift bg-gradient-to-br from-purple-50 to-white rounded-2xl p-7 border border-purple-100 fade-in">
+          <div class="stars text-base mb-3">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-brand-gray text-sm leading-relaxed mb-5">
+            "Me apaixonei pelas lentes de contato dental! Sempre tive vergonha de sorrir nas fotos, e hoje fico perto
+            das câmeras. A Dra. foi super transparente em todo o processo. Resultado perfeito!"
+          </p>
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&q=80" alt="Fernanda Costa"
+              class="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <div class="font-bold text-brand-dark text-sm">Fernanda Costa</div>
+              <div class="text-xs text-brand-gray">Lentes de Contato Dental</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-14 fade-in">
+        <span
+          class="inline-block bg-brand-blueLight text-brand-blue text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4">FAQ</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-3">Perguntas Frequentes</h2>
+        <p class="text-brand-gray text-base">Tire suas principais dúvidas antes de agendar sua consulta.</p>
+      </div>
+
+      <div class="flex flex-col gap-4 fade-in">
+
+        <!-- FAQ Item 1 -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-semibold text-brand-dark text-base">A consulta inicial é cobrada?</span>
+            <i class="fa-solid fa-chevron-down text-brand-teal transition-transform duration-300"></i>
+          </button>
+          <div class="faq-body px-6 pb-0">
+            <p class="text-brand-gray text-sm leading-relaxed pb-5">
+              Não! A sua primeira consulta de avaliação na Sorriso de Ouro é totalmente gratuita. Nela, um de nossos
+              especialistas irá examinar sua saúde bucal, conversar sobre seus objetivos e montar um plano de tratamento
+              personalizado, sem nenhum compromisso.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-semibold text-brand-dark text-base">Quais formas de pagamento a clínica aceita?</span>
+            <i class="fa-solid fa-chevron-down text-brand-teal transition-transform duration-300"></i>
+          </button>
+          <div class="faq-body px-6 pb-0">
+            <p class="text-brand-gray text-sm leading-relaxed pb-5">
+              Aceitamos todas as principais formas de pagamento: cartões de crédito (parcelamos em até 12x sem juros em
+              tratamentos selecionados), cartão de débito, Pix, boleto bancário e dinheiro. Também trabalhamos com os
+              principais convênios odontológicos. Consulte nosso atendimento para verificar o seu plano.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-semibold text-brand-dark text-base">O clareamento dental causa sensibilidade?</span>
+            <i class="fa-solid fa-chevron-down text-brand-teal transition-transform duration-300"></i>
+          </button>
+          <div class="faq-body px-6 pb-0">
+            <p class="text-brand-gray text-sm leading-relaxed pb-5">
+              É normal que alguns pacientes sintam uma leve sensibilidade durante ou após o procedimento, mas isso é
+              temporário e passa em 24 a 48 horas. Utilizamos géis de última geração com agentes dessensibilizantes que
+              minimizam ao máximo o desconforto. Nossos dentistas avaliam caso a caso para garantir sua segurança e
+              bem-estar.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER / CONTATO
+  ============================================================ -->
+  <footer id="contato" class="bg-brand-dark text-slate-300 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div
+              class="w-9 h-9 rounded-full bg-gradient-to-br from-brand-teal to-brand-blue flex items-center justify-center">
+              <i class="fa-solid fa-tooth text-white text-sm"></i>
+            </div>
+            <span class="text-white font-bold text-lg">Sorriso de Ouro</span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-400 mb-5">Cuidando do seu sorriso com dedicação, tecnologia e
+            todo o carinho que você merece.</p>
+          <div class="flex gap-3">
+            <a href="#"
+              class="w-9 h-9 bg-slate-700 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
+              aria-label="Instagram">
+              <i class="fa-brands fa-instagram text-sm"></i>
+            </a>
+            <a href="#"
+              class="w-9 h-9 bg-slate-700 hover:bg-brand-teal rounded-full flex items-center justify-center transition-colors"
+              aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f text-sm"></i>
+            </a>
+            <a href="https://wa.me/5511999999999" target="_blank"
+              class="w-9 h-9 bg-slate-700 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors"
+              aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Endereço -->
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Endereço</h4>
+          <ul class="flex flex-col gap-3 text-sm text-slate-400">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-brand-teal mt-0.5 flex-shrink-0"></i>
+              <span>Av. Paulista, 1234 – Sala 56<br />Bela Vista, São Paulo – SP<br />CEP 01310-100</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-phone text-brand-teal flex-shrink-0"></i>
+              <a href="tel:+5511999999999" class="hover:text-white transition-colors">(11) 9 9999-9999</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-envelope text-brand-teal flex-shrink-0"></i>
+              <a href="mailto:contato@sorrisodeouro.com.br"
+                class="hover:text-white transition-colors">contato@sorrisodeouro.com.br</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Horário -->
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Horário de Funcionamento</h4>
+          <ul class="flex flex-col gap-2.5 text-sm text-slate-400">
+            <li class="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span>Segunda – Sexta</span>
+              <span class="text-white font-medium">08h – 18h</span>
+            </li>
+            <li class="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span>Sábado</span>
+              <span class="text-white font-medium">08h – 13h</span>
+            </li>
+            <li class="flex items-center justify-between">
+              <span>Domingo</span>
+              <span class="text-red-400 font-medium">Fechado</span>
+            </li>
+          </ul>
+          <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank"
+            class="mt-5 inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200">
+            <i class="fa-brands fa-whatsapp"></i> Agendar agora
+          </a>
+        </div>
+
+        <!-- Mapa -->
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Como Chegar</h4>
+          <div class="rounded-xl overflow-hidden border border-slate-700 h-40">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.098!2d-46.654!3d-23.561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzQwLjAiUyA0NsKwMzknMjQuMCJX!5e0!3m2!1spt!2sbr!4v1700000000000!5m2!1spt!2sbr"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="Localização da Clínica Sorriso de Ouro">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div
+        class="border-t border-slate-700 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <p>© 2024 Clínica Sorriso de Ouro. Todos os direitos reservados.</p>
+        <p>CRO-SP 12345 | Responsável Técnico: Dr. Ricardo Oliveira</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       FLOATING WHATSAPP BUTTON
+  ============================================================ -->
+  <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta."
+    target="_blank"
+    class="whatsapp-float fixed bottom-6 right-6 z-50 w-15 h-15 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
+    style="width: 60px; height: 60px;" aria-label="Fale conosco pelo WhatsApp">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+  </a>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ── 1. Navbar scroll effect ──────────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // ── 2. Mobile menu toggle ────────────────────────────────
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuBtn.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', !isOpen);
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.classList.remove('open');
+      });
+    });
+
+    // ── 3. FAQ Accordion ────────────────────────────────────
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = btn.nextElementSibling;
+        const icon = btn.querySelector('i');
+        const isOpen = body.classList.contains('open');
+
+        // Close all others
+        document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.faq-toggle i').forEach(i => i.style.transform = '');
+        document.querySelectorAll('.faq-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+        // Toggle current
+        if (!isOpen) {
+          body.classList.add('open');
+          icon.style.transform = 'rotate(180deg)';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ── 4. Intersection Observer for fade-in animations ─────
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
